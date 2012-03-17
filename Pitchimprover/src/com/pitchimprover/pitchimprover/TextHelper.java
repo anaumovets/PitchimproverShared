@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * ...
+ * utilities for simple text drawing
  * @author gary poison
  */
 public class TextHelper 

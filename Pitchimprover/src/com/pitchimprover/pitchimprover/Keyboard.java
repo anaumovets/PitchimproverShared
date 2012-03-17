@@ -29,6 +29,9 @@ public class Keyboard
   private Context m_context;
 
 
+  /*
+   * responsible for drawing and interacting with the piano keyboard
+   */
   public Keyboard(Context context, Activity i_activity, boolean colored)
   {
     keysactive_img = colored ? AnimationManager.CreateKeysActiveColoredAnim(context) : AnimationManager.CreateKeysActiveAnim(context);

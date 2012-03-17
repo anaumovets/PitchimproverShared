@@ -8,8 +8,8 @@ import android.graphics.Rect;
 
 
 /**
- * ...
- * @author DefaultUser (Tools -> Custom Arguments...)
+ * Animated is a wrapper class to draw images
+ * when porting just change the implementation of this class
  */
 class Animated 
 {

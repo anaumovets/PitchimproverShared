@@ -9,9 +9,10 @@ import android.widget.RelativeLayout;
 
 
 /**
- * The SurfaceView, on which we draw the map.
+ * The SurfaceView, on which we draw.
+ * The drawing loop is here.
  */
-public class CellMap extends SurfaceView implements SurfaceHolder.Callback {
+public class PitchimproverView extends SurfaceView implements SurfaceHolder.Callback {
   private MapThread _mapThread;
   private Context context;
 
@@ -35,7 +36,7 @@ public class CellMap extends SurfaceView implements SurfaceHolder.Callback {
    * 
    * @param context
    */
-  public CellMap(Context i_context, RelativeLayout i_panel, Pitchimprover i_activity) {
+  public PitchimproverView(Context i_context, RelativeLayout i_panel, Pitchimprover i_activity) {
 
     super(i_context);
     panel = i_panel;

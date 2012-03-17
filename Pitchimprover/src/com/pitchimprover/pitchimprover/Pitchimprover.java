@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 
+//Activity for the application
+
 public class Pitchimprover extends Activity {
-  private CellMap _map;
+  private PitchimproverView _map;
   private Button btn_intervals;
 
   /** Called when the activity is first created. */
@@ -22,14 +24,14 @@ public class Pitchimprover extends Activity {
 
     setContentView(R.layout.main);
 
-    _map = new CellMap(this, panel, this);
+    _map = new PitchimproverView(this, panel, this);
     initOnClick();
   }
   
   @Override
   public void onBackPressed()
   {
-    if(_map.state == CellMap.state_excercise)
+    if(_map.state == PitchimproverView.state_excercise)
       _map.backToMenu();
     else
       super.onBackPressed();

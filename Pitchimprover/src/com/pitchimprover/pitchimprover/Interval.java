@@ -4,7 +4,9 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Handler;
 
-
+/*
+ * play one sound after another
+ */
 
 public class Interval
 {
