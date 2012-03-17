@@ -1,0 +1,67 @@
+package android.pitchimprover;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.RelativeLayout;
+
+public class ExcerciseActivity extends Activity
+{
+  CellMap _map;
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    RelativeLayout panel = new RelativeLayout(this);
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+    super.onCreate(savedInstanceState);
+
+    _map = new CellMap(this, panel, this);
+
+    setContentView(_map);
+
+  }
+
+  @Override
+  protected void onResume() {
+      super.onResume();
+      // The activity has become visible (it is now "resumed").
+  }
+  @Override
+  protected void onPause() {
+      super.onPause();
+      // Another activity is taking focus (this activity is about to be "paused").
+  }
+  @Override
+  protected void onStop() {
+      super.onStop();
+      // The activity is no longer visible (it is now "stopped")
+  }
+  @Override
+  protected void onDestroy() {
+      super.onDestroy();
+      // The activity is about to be destroyed.
+  }
+
+  
+  
+  
+  
+  public void startExcerciseIntervals()
+  {
+    _map.startExcerciseIntervals();
+  }
+
+  public void startExcerciseMelody()
+  {
+    _map.startExcerciseMelody();
+  }
+
+  public void startExcerciseProgressions()
+  {
+    _map.startExcerciseProgressions();
+  }
+
+  public void startExcerciseChordTypes()
+  {
+    _map.startExcerciseChordTypes();
+  }
+}

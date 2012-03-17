@@ -1,0 +1,106 @@
+package android.pitchimprover;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.WindowManager;
+
+public class KeySelector
+{
+  private MButton incKeyBtn;
+  private MButton decKeyBtn;
+  private Context m_context;
+  private int key;
+  private boolean enabled;
+  
+  private TextHelper key_sub_text;
+  private TextHelper key_text;
+
+  
+  public KeySelector(Context context)
+  {
+    decKeyBtn = new MButton(0, 0,1, 1, "<", context);
+    incKeyBtn = new MButton(0, 0, 1, 1, ">", context);
+    key_text = new TextHelper(5, 100, 30, 20, Constants.toneName(5),15.0f,context, Gravity.CENTER);
+    key_sub_text = new TextHelper(5, 100, 30, 20, Constants.toneName(5),15.0f,context, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+
+    m_context = context;
+  }
+
+  private int getButtonSize()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (int)(Constants.phiOrder(4)*(double)display.getHeight());
+  }
+  
+  public int getFontSize()
+  {
+    return getButtonSize()/2;  
+  }
+
+  public int getRoot()
+  {
+    return key;
+  }
+  
+  public void draw(Canvas canvas)
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int h = display.getHeight();
+    int w = display.getWidth();
+
+    incKeyBtn.setSize(getButtonSize());
+    decKeyBtn.setSize(getButtonSize());
+    incKeyBtn.moveTo(w - getButtonSize(), 0);
+    decKeyBtn.moveTo(w - 3*getButtonSize(), 0);
+    incKeyBtn.draw(canvas);
+    decKeyBtn.draw(canvas);
+    
+    key_sub_text.setText("Key ");
+    key_sub_text.setTextSize(getFontSize());
+    key_sub_text.moveTo(0, 0);
+    key_sub_text.setSize(w - 3*getButtonSize(), getButtonSize());
+    key_sub_text.draw(canvas);
+
+
+    key_text.setText(Constants.toneName(key));
+    key_text.setTextSize(getFontSize());
+    key_text.moveTo( w - 2*getButtonSize(), 0);
+    key_text.setSize(getButtonSize(), getButtonSize());
+    key_text.draw(canvas);
+  }
+  
+  public void enableSelection(boolean enable)
+  {
+    enabled = enable;
+    incKeyBtn.setEnabled(enable);
+    decKeyBtn.setEnabled(enable);
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private void incRoot()
+  {
+    key = (key + 1) % Constants.num_tones_in_octave;
+
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private void decRoot()
+  {
+    key = (key- 1) % Constants.num_tones_in_octave;
+    if (key< 0)
+      key += Constants.num_tones_in_octave;
+  }
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public void mouseDown(int x, int y)
+  {
+    if (decKeyBtn.isEnabled() && decKeyBtn.hitTestPoint(x, y))
+      decRoot();
+
+    if (incKeyBtn.isEnabled() && incKeyBtn.hitTestPoint(x, y))
+      incRoot();
+
+  }
+}

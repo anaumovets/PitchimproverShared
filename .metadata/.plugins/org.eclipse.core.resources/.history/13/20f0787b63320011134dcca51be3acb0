@@ -1,0 +1,93 @@
+package android.pitchimprover;
+import com.google.ads.*;
+
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
+public class Pitchimprover extends Activity {
+  private static final String LOG_TAG = Pitchimprover.class.getSimpleName();
+  private CellMap _map;
+
+  private AdView adView;
+
+  private LinearLayout llayout;
+  private LinearLayout.LayoutParams params;
+  
+  private Button btn_intervals;
+  private Button btn_perfect;
+  private Button btn_melody;
+  private Button btn_progressions;
+  private Button btn_chord_types;
+  
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+
+    RelativeLayout panel = new RelativeLayout(this);
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    _map = new CellMap(this, panel, this);
+    final Context cont = this;
+    btn_intervals = (Button)findViewById(R.id.button_intervals);
+    btn_intervals.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      {
+        Intent intent = new Intent(cont, ExcerciseActivity.class);
+        startActivityForResult(intent, 0);
+      }
+    });
+    
+    btn_perfect= (Button)findViewById(R.id.button_perfect);
+    btn_perfect.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) { _map.startExcercisePerfect(); setContentView(_map);}
+    });
+
+    btn_melody= (Button)findViewById(R.id.button_melody);
+    btn_melody.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      { 
+        _map.startExcerciseMelody(); 
+        setContentView(_map);
+        }
+    });
+
+    btn_progressions= (Button)findViewById(R.id.button_progressions);
+    btn_progressions.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      {
+        _map.startExcerciseProgressions();
+        setContentView(_map);
+      }
+    });
+
+    btn_chord_types = (Button)findViewById(R.id.button_intervals);
+    btn_chord_types.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v)
+      {
+        _map.startExcerciseChordTypes();
+        setContentView(_map);
+      }
+    });
+
+  }
+
+
+}

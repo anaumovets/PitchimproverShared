@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="174" key="DIALOG_Y_ORIGIN"/>
+		<item value="247" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="ShowViewDialog">
+		<item value="276" key="DIALOG_WIDTH"/>
+		<item value="com.android.ide.eclipse.ddms.views.LogCatView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="253" key="DIALOG_Y_ORIGIN"/>
+		<item value="826" key="DIALOG_X_ORIGIN"/>
+		<item value="414" key="DIALOG_HEIGHT"/>
+		<item value="1|Microsoft Sans Serif|8.25|0|WINDOWS|1|-11|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft Sans Serif" key="DIALOG_FONT_NAME"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="com.android.ide.eclipse.ddms.views.category"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.import.ExternalProject" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<item value="com.android.ide.eclipse.adt.project.ExportWizard" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.team.cvs.ui.importWizards"/>
+			<item value="org.eclipse.equinox.p2.category"/>
+			<item value="org.eclipse.pde.ui.PluginDevelopment"/>
+			<item value="org.eclipse.debug.ui"/>
+			<item value="org.eclipse.team.ui.importWizards"/>
+			<item value="org.eclipse.wst.XMLCategory"/>
+		</list>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="com.android.ide.eclipse.wizards.category"/>
+		</list>
+	</section>
+</section>

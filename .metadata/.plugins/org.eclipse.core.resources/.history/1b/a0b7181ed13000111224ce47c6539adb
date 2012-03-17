@@ -1,0 +1,8 @@
+package android.pitchimprover;
+
+import Activity;
+
+public class ExcerciseActivity extends Activity
+{
+
+}

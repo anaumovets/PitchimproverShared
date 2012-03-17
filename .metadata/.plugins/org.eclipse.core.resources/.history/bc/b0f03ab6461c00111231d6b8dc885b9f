@@ -1,0 +1,56 @@
+package android.pitchimprover;
+import com.google.ads.*;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+public class Pitchimprover extends Activity {
+  private static final String LOG_TAG = Pitchimprover.class.getSimpleName();
+  private CellMap _map;
+  private AdView adView;
+
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+ // Create the adView
+    adView = new AdView(this, AdSize.BANNER, 0xa14ed65f462f75a );
+
+    // Lookup your LinearLayout assuming it’s been given
+    // the attribute android:id="@+id/mainLayout"
+    LinearLayout layout = (LinearLayout)findViewById(R.id.mainLayout);
+
+    // Add the adView to it
+    layout.addView(adView);
+
+    // Initiate a generic request to load it with an ad
+    adView.loadAd(new AdRequest());
+
+    
+    RelativeLayout panel = new RelativeLayout(this);
+
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+
+
+
+    _map = new CellMap(this, panel);
+    setContentView(_map);
+    //setContentView(panel);
+
+    //setContentView(panel);
+
+  }
+
+
+}

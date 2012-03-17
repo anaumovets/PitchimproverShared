@@ -1,0 +1,14 @@
+#Mon Dec 05 00:47:19 EET 2011
+com.android.ide.eclipse.ddms.logcat.level=20
+logcat.view.colsize.Text=484
+logcat.view.colsize.Level=24
+logcat.view.colsize.Application=56
+logcat.view.colsize.PID=48
+logcat.view.colsize.Tag=99
+com.android.ide.eclipse.ddms.timeOut=2000000
+com.android.ide.eclipse.ddms.logcat.tag=76
+logcat.view.colsize.Time=126
+com.android.ide.eclipse.ddms.logcat.time=124
+com.android.ide.eclipse.ddms.logcat.message=300
+eclipse.preferences.version=1
+com.android.ide.eclipse.ddms.logcat.pid=44

@@ -1,0 +1,409 @@
+﻿package android.pitchimprover;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.Display;
+import android.view.WindowManager;
+
+public class ExcerciseChordTypes extends ExcerciseHelper 
+{
+
+  public int state_pending = 0;
+  public int state_waiting = 1;
+  public int state_answered = 2;
+  public int state_level_complete = 3;
+
+  public int btn_sz = 30;
+
+  public int state;
+  public int level;
+  public boolean two_chords;
+  public int correct_in_row;
+
+  Context m_context;
+
+  private Chord current_chord;
+  private Chord current_answer;
+  private int wrong_type0;
+  private int wrong_type1;
+  private int num_tries;
+
+  private MButton[] chord_btns;
+
+  private KeySelector key_selector;
+  private Progress progress;
+  private Keyboard kbrd;
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// void ExcerciseChordTypes(Canvas canvas)
+  ExcerciseChordTypes(Context context)
+  {
+    m_context = context;
+
+    key_selector = new KeySelector(context, "Root ");
+    init(context);
+
+    two_chords = false;
+    num_tries = 0;
+    current_chord = new Chord(0,0,0);
+    current_answer = new Chord(0,0,0);
+    subscribed_chord = -1;
+    root = 0;
+
+    progress = new Progress(getNumLevels(), context, this, false);
+
+    kbrd = new Keyboard(context, true);
+
+    chord_btns = new MButton[Chord.num_chords];
+    for (int i = 0; i < Chord.num_chords; ++i)
+    {
+      int w = 170;
+      int pad = 10;
+
+      MButton btn = new MButton((pad>>1) + (i%3)*(w+pad), ((i-i%3)/3)*26 + 150, w, 24, Chord.Name(i), context);
+      chord_btns[i] = btn;
+    }
+
+    setLevel(0); 
+    resetState();
+    newTask();
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void setLevel(int i_lvl)
+  {
+    level = i_lvl;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void newTask()
+  {
+    if(two_chords)
+      current_chord.randomOfTwo(wrong_type0, wrong_type1);
+    else
+      current_chord.randomChord(level);
+  }    
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void resetState()
+  {
+    two_chords = false;
+    state = state_pending;
+    correct_in_row = 0;
+    updateBtnEnabling();
+    setLevel(progress.level);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void clickedAnywhere()   
+  {
+    if (state == state_answered || state == state_level_complete)
+      state = state_pending;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void playTask()
+  {
+    if (state == state_pending)
+    {
+      newTask();
+      state = state_waiting;
+    }
+
+    current_chord.play(m_context);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public int getNumLevels()
+  {
+    return Chord.num_chords - 1;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
+  public void mouseUp(int x,int y)
+  {
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+  public void mouseMove(int x,int y)
+  {
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void mouseDown(int x,int y)
+  {
+    clickedAnywhere();
+
+    key_selector.mouseDown(x, y);
+    root = key_selector.getRoot();
+
+    mouseDownHelper(x, y);
+
+    if (progress.checkLevelChange(x, y))
+    {
+      resetState();
+      return;
+    }
+
+    if (kbrd.playHitTest(x, y))
+    {
+      playTask();
+      return;
+    }
+
+    for (int i = 0; i < chord_btns.length; ++i)
+    {
+      if (chord_btns[i].isEnabled() && chord_btns[i].hitTestPoint(x, y))
+        if(state == state_waiting)
+        {
+          current_answer = new Chord(current_chord.root, current_chord.root, i);
+          current_answer.play(m_context);
+
+          state = state_answered;
+          boolean correct = TestingHelper.always_true ? true : (current_answer.type == current_chord.type);
+
+          if (correct)
+            ++correct_in_row;
+          else
+          {
+            correct_in_row = 0;
+
+            if (level > 0 && !two_chords)
+            {
+              two_chords = true;
+              wrong_type0 = current_answer.type;
+              wrong_type1 = current_chord.type;
+            }
+          }
+
+
+          if ((level != getNumLevels()) && correct_in_row >= correctNeeded())
+          {
+            if (!two_chords)
+            {
+              if (level < getNumLevels())
+                ++level;
+
+              two_chords = false;
+              correct_in_row = 0;
+              state = state_level_complete;
+            }
+
+            correct_in_row = 0;
+            two_chords= false;
+          }
+        }
+    }
+
+    updateBtnEnabling();
+  }    
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public int getLevel()
+  {
+    return level;
+  }    
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public boolean isActive(int key)
+  {
+    return false;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void keyPressed(int key_num)
+  {
+
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public int getCorrectInRow()
+  {
+    return correct_in_row;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+  public int correctNeeded()
+  {
+    if(TestingHelper.testing)
+      return 1;
+    
+    if (two_chords)
+      return 10;
+
+    if (level < 4)
+      return 15;
+
+    if (level < 8)
+      return 25;
+
+    return 40;
+  }    
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  private void updateBtnEnabling()
+  {
+    key_selector.enableSelection(state == state_pending || state == state_answered);
+    
+    for (int i = 0; i < chord_btns.length; ++i)
+    {
+      chord_btns[i].setEnabled(i <= level + 1);
+
+      if (two_chords)
+        chord_btns[i].setEnabled((i == wrong_type0) || (i == wrong_type1));
+
+
+    }
+  }    
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+
+  public void subscribeChord(Canvas canvas)
+  {
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void subscribeLevel(Canvas canvas)
+  {
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public int getPromptHeight()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (display.getHeight()*4)/5;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawPrompt(Canvas canvas)
+  {
+    String text = "What kind of chord is it?";
+    drawSubText(text, m_context, canvas);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawPending(Canvas canvas)
+  {
+    String text = "Press play to hear chord.";
+    drawSubText(text, m_context, canvas);
+  }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private int getButtonSize()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (int)(Constants.phiOrder(4)*(double)display.getHeight());
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public int getFontSize()
+  {
+    return getButtonSize()/2;
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void draw(Canvas canvas)
+  {
+    canvas.drawColor(Color.BLACK);
+
+    if (playOrRepeat())
+      kbrd.drawPlay(canvas);
+    else
+      kbrd.drawRepeat(canvas);
+
+    updateBtnEnabling();
+    subscribeRoot(canvas);
+
+    if (state == state_waiting)
+    {
+      drawPrompt(canvas);
+    }
+
+    if (state == state_pending)
+    {
+      drawPending(canvas);
+      subscribeChord(canvas);
+    }
+
+    if(state == state_waiting || state == state_pending)
+      subscribeChord(canvas);
+
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int full_w = display.getWidth();
+    int full_h = display.getHeight();
+
+    int pad = 2;
+    int w = (full_w-pad*4)/3;
+    int h = full_h/9;
+
+    for (int i = 0; i < Chord.num_chords; ++i)
+    {
+      //chord_btns[i].setTextSize(getFontSize());
+      chord_btns[i].setDims(w, h);
+      chord_btns[i].moveTo((pad>>1) + (i%3)*(w+pad), (pad>>1) + progress.getProgressBarY(full_h) + progress.getProgressBarH(full_h) + ((i-i%3)/3)*h);
+      chord_btns[i].draw(canvas);
+    }
+
+    if (state == state_answered || state == state_level_complete)
+    {
+      if (state == state_level_complete)
+        if (level == getNumLevels())
+          drawGameOver(canvas);
+        else
+          drawLevelComplete(canvas);
+
+      if (state == state_answered)
+        drawAnswer(canvas);
+    }
+
+    progress.updateBtnEnabling();
+    progress.level = getLevel();
+    progress.drawProgress(getCorrectInRow(), correctNeeded(), canvas);
+    drawHelper(canvas);
+    key_selector.draw(canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void subscribeRoot(Canvas canvas)
+  {
+    //TextHelper.drawText(len_x, Constants.scr_h - 30, 30, 30, Constants.toneName(root), canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public boolean playOrRepeat()
+  {
+    return !(state == state_waiting);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public void drawAnswer(Canvas canvas)
+  {
+    boolean correct = (current_answer.type == current_chord.type);
+    //Alert.show(current_answer.type.toString());
+
+    String[] correct_strs = {"Correct.", "Right!", "Yes.", "Indeed.", "You are right."};
+    String[] wrong_strs = {"Wrong.", "Sorry.", "No.", "Oops!"};
+    //the sum sort of emulates randomness, but is stable between user inputs.
+    String correct_str = correct_strs[(num_tries + current_chord.type + current_answer.type)%correct_strs.length];
+    String wrong_str = wrong_strs[(num_tries + current_chord.type + current_answer.type)%wrong_strs.length];
+
+    String text = (correct ? correct_str + "\n" : wrong_str + "\n") ;
+
+    text += "It is ";
+    text += current_chord.typeToString();
+
+    if(!correct)
+    {
+      text += ",\nnot ";
+      text += current_answer.typeToString();
+    }
+
+    drawMessageBox(text, m_context, canvas);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawLevelComplete(Canvas canvas)
+  {
+    String text = ("Level "+ Integer.toString(level+1) + "\n"  + "New chord: ") ;
+    text += Chord.ShortName(level + 1);
+    text += "\nPress play to hear chord";
+    drawMessageBox(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawGameOver(Canvas canvas)
+  {
+    String text = "Congratulations, great job!\n Now you can practice further,\n or try your pitch with \n other instruments.";
+    drawMessageBox(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+}
+
+

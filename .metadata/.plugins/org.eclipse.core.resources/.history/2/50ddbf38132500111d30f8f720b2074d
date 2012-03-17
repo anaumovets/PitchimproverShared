@@ -1,0 +1,207 @@
+package android.pitchimprover;
+
+import java.util.HashMap;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.ads.*;
+
+/**
+ * The SurfaceView, on which we draw the map.
+ */
+public class CellMap extends SurfaceView implements SurfaceHolder.Callback {
+  public static int _cellSize = 30;
+
+  // HashMap, first level are the rows, second level are the columns
+  private HashMap<Integer, HashMap<Integer, Cell>> _mapCells = new HashMap<Integer, HashMap<Integer, Cell>>();
+  private MapThread _mapThread;
+
+  // variables we will use often
+  private HashMap<Integer, Cell> _row;
+  private Paint paint = new Paint();
+  private Context context;
+  // map size in cells
+  public static int _mapSize = 20;
+
+  // Offset to the upper left corner of the map
+  private int _xOffset = 0;
+  private int _yOffset = 0;
+
+  // last touch point
+  private int _xTouch = 0;
+  private int _yTouch = 0;
+
+  // scrolling active?
+  private boolean _isMoving = false;
+
+  private static int state_menu = 0;
+  private static int state_excercise = 1;
+
+
+  private int state;
+  RelativeLayout panel;
+
+  IExcercise excercise;
+  MainMenu mainMenu;
+
+  /**
+   * Constructor, fills the map on creation.
+   * 
+   * @param context
+   */
+  public CellMap(Context i_context, RelativeLayout i_panel, Activity i_activity) {
+
+    super(i_context);
+    panel = i_panel;
+    context = i_context;
+    RandomUtil.init();
+    TextHelper.init(i_context);
+    SoundManager.init(i_context);
+
+    mainMenu = new MainMenu(i_context, i_activity);
+
+    state = state_menu;
+    // register the view to the surfaceholder
+    getHolder().addCallback(this);
+
+    // set the thread - not yet started
+    _mapThread = new MapThread(this);
+
+    // secure the view is focusable
+    setFocusable(true);
+  }
+
+  /**
+   * Draw what we want to see.
+   */
+  @Override
+  public void onDraw(Canvas canvas) {
+    if(state == state_excercise)
+      excercise.draw(canvas);
+
+    if(state == state_menu)
+      mainMenu.draw(canvas);
+  }
+
+  /**
+   * Handle touch event on the map.
+   */
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+
+    synchronized (getHolder())
+    {
+      // touch down
+      if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        // start of a new event, reset the flag
+        _isMoving = false;
+        // store the current touch coordinates for scroll calculation
+        _xTouch = (int) event.getX();
+        _yTouch = (int) event.getY();
+
+        if(state == state_menu)
+        {
+          int selection = mainMenu.checkSelection(_xTouch, _yTouch);
+          if(selection == MainMenu.choice_intervals)
+          {
+            excercise = new ExcerciseIntervals(context);
+            state = state_excercise; 
+          }
+
+          if(selection == MainMenu.choice_perfect)
+          {
+            excercise = new ExcercisePerfect(context);
+            state = state_excercise; 
+          }
+
+          if(selection == MainMenu.choice_melody)
+          {
+            excercise = new ExcerciseMelody(context);
+            state = state_excercise; 
+          }
+
+          if(selection == MainMenu.choice_chordtypes)
+          {
+            excercise = new ExcerciseChordTypes(context);
+            state = state_excercise; 
+          }
+
+          if(selection == MainMenu.choice_progressions)
+          {
+            excercise = new ExcerciseChords(context);
+            state = state_excercise; 
+          }
+
+        }
+        else
+          if(state == state_excercise)
+          {
+            excercise.mouseDown(_xTouch, _yTouch);
+            if(excercise.exit())
+              state = state_menu;
+          }
+      } 
+
+      if (event.getAction() == MotionEvent.ACTION_UP) {
+        // touch released
+        //if (!_isMoving) {
+        _xTouch = (int) event.getX();
+        _yTouch = (int) event.getY();
+        if(state == state_excercise)
+          excercise.mouseUp(_xTouch, _yTouch);
+        //}
+      }
+    }
+    return true;
+  }
+
+  @Override
+  public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+
+  /**
+   * Called when surface created.
+   * Starts the thread if not already running.
+   */
+  @Override
+  public void surfaceCreated(SurfaceHolder holder) {
+    if (!_mapThread.isAlive()) {
+      _mapThread = new MapThread(this);
+    }
+    _mapThread._run = true;
+    _mapThread.start();
+  }
+
+  /**
+   * Called when surface destroyed
+   * Stops the thread.
+   */
+  @Override
+  public void surfaceDestroyed(SurfaceHolder holder) {
+    boolean retry = true;
+    _mapThread._run = false;
+    while (retry) {
+      try {
+        _mapThread.join();
+        retry = false;
+      } catch (InterruptedException e) {
+        // we will try it again and again...
+      }
+    }
+  }
+}

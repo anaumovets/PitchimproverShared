@@ -1,0 +1,73 @@
+package android.pitchimprover;
+import com.google.ads.*;
+import com.mopub.mobileads.MoPubView;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
+public class Pitchimprover extends Activity {
+  private static final String LOG_TAG = Pitchimprover.class.getSimpleName();
+  private CellMap _map;
+
+  private MoPubView mAdView;
+
+  
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    mAdView = new MoPubView(this);//(MoPubView) findViewById(R.id.adview);
+    mAdView.
+    
+    mAdView.setAdUnitId("xxxxxxxxxxx"); // Enter your Ad Unit ID from www.mopub.com
+    mAdView.loadAd();
+    
+    // Lookup R.layout.main
+    /*LinearLayout layout = (LinearLayout)findViewById(R.id.linearLayout);
+      
+    // Create the adView
+    // Please replace MY_BANNER_UNIT_ID with your AdMob Publisher ID
+    AdView adView = new AdView(this, AdSize.BANNER, "a14ed65f462f75a");
+  
+    // Add the adView to it
+    layout.addView(adView);
+     
+    // Initiate a generic request to load it with an ad
+    AdRequest request = new AdRequest();
+    request.setTesting(true);
+
+    adView.loadAd(request);*/   
+    
+    /*    super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+    
+    RelativeLayout panel = new RelativeLayout(this);
+
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+
+    super.onCreate(savedInstanceState);
+
+    
+    
+    _map = new CellMap(this, panel, this);
+    setContentView(_map);
+*/
+  }
+
+
+}

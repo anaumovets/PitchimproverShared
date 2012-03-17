@@ -1,0 +1,81 @@
+package android.pitchimprover;
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+
+
+public class Pitchimprover extends Activity {
+  private CellMap _map;
+  private Button btn_intervals;
+  private Button btn_perfect;
+  private Button btn_melody;
+  private Button btn_progressions;
+  private Button btn_chords;
+
+
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    RelativeLayout panel = new RelativeLayout(this);
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+
+    setContentView(R.layout.main);
+
+    _map = new CellMap(this, panel, this);
+    initOnClick();
+  }
+  
+  public void initOnClick()
+  {
+    btn_intervals = (Button)findViewById(R.id.button_intervals);
+    btn_intervals.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      {
+        _map.startExcerciseIntervals(); 
+        setContentView(_map);
+      }
+    });
+    
+
+    
+    btn_perfect= (Button)findViewById(R.id.button_perfect);
+    btn_perfect.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) { _map.startExcercisePerfect(); setContentView(_map);}
+    });
+
+    btn_melody= (Button)findViewById(R.id.button_melody);
+    btn_melody.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      { 
+        _map.startExcerciseMelody(); 
+        setContentView(_map);
+        }
+    });
+
+    btn_progressions= (Button)findViewById(R.id.button_progressions);
+    btn_progressions.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      {
+        _map.startExcerciseProgressions();
+        setContentView(_map);
+      }
+    });
+    
+    btn_chords= (Button)findViewById(R.id.button_chords);
+    btn_chords.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) 
+      {
+        _map.startExcerciseChordTypes();
+        setContentView(_map);
+      }
+    });
+  }
+
+
+}

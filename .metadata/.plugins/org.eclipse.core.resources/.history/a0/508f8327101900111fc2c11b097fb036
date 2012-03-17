@@ -1,0 +1,496 @@
+﻿package android.pitchimprover;
+
+import java.io.IOException;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.WindowManager;
+
+/**
+ * ...
+ * @author gary poison
+ */
+
+public class ExcerciseIntervals extends ExcerciseHelper 
+{
+
+  public int state_pending = 0;
+  public int state_waiting0 = 1;
+  public int state_waiting1 = 2;
+  public int state_answered = 3;
+  public int state_level_complete = 4;
+
+  public int state;
+  public int level;
+  public boolean two_intervals;
+  public int correct_in_row;
+
+  private Interval current_interval;
+  private Interval current_answer;
+  private int wrong_interval0;
+  private int wrong_interval1;
+  private int num_tries;
+
+  public int key_state_disabled = 0;
+  public int key_state_active = 1;
+  public int key_state_pressed = 2;
+  public int key_state_active_pressed = 3;
+
+  public int keys_h = 150;
+  public boolean[] keys_down;
+
+  private boolean exited;
+
+  private Context m_context;
+  private Progress progress;
+
+  private Keyboard kbrd;
+
+  private TextHelper root_text;
+
+  private MButton exitBtn;
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// void ExcerciseIntervals(Canvas canvas)
+  ExcerciseIntervals(Context context)
+  {
+    two_intervals = false;
+    num_tries = 0;
+    current_interval = new Interval();
+    current_answer = new Interval();
+    level = 0;
+    m_context = context;
+
+    init(context);
+    
+    exited = false;
+
+    newTask();
+    keys_down = new boolean[Constants.num_tones_in_octave * Constants.num_octaves];
+    for (int ind = 0; ind < keys_down.length; ++ind)
+      keys_down[ind] = false;
+
+    progress = new Progress(getNumLevels(), context, this);
+    kbrd = new Keyboard(context, false);
+
+    root_text = new TextHelper(5, 100, 30, 20, Constants.toneName(5),15.0f,context, Gravity.CENTER);
+
+    Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int full_w = display.getWidth();
+    int full_h = display.getHeight();
+
+    int toolbar_delta = 30;
+    exitBtn = new MButton(full_w - full_w/5,   full_h - full_h/5 - toolbar_delta, full_w/5, full_h/5, "Exit", context);
+
+    setLevel(0); 
+    resetState();
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void setLevel(int i_lvl)
+  {
+    level = i_lvl;
+    //resetState();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public int getLevel()
+  {
+    return level;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
+  public int getNumLevels()
+  {
+    return Constants.intervals.length - 1;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
+  public void mouseMove(int x,int y)
+  {
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
+  public void mouseDown(int x,int y)
+  {
+    //if clicked anywhere, the result window must disappear
+    clickedAnywhere();
+
+    if(exitBtn.hitTestPoint(x, y))
+    {
+      exited = true;
+      return;
+    }
+
+    if (progress.checkLevelChange(x, y))
+      return;
+
+    if (kbrd.playHitTest(x, y))
+    {
+      playTask();
+      return;
+    }
+
+    int kbdx = getKeyboardFocusX();
+    int key_num = kbrd.keyHitTest(kbdx, x, y);
+
+    if (key_num < 0 || key_num >= keys_down.length)
+      return;
+
+
+    keys_down[key_num] = true;
+    keyPressed(key_num);
+  }    
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
+  public void mouseUp(int x,int y)
+  {
+    for (int ind = 0; ind < keys_down.length; ++ind)
+      keys_down[ind] = false;
+  }  
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void Pend()
+  {
+    if (state == state_answered || state == state_level_complete)
+      state = state_pending;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void newTask()
+  {
+    if(two_intervals)
+      current_interval.randomOfTwo(wrong_interval0, wrong_interval1);
+    else
+      current_interval.randomInterval(level);
+  }    
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void resetState()
+  {
+    two_intervals = false;
+    state = state_pending;
+    correct_in_row = 0;
+    setLevel(progress.level);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void clickedAnywhere()   
+  {
+    if (state == state_answered || state == state_level_complete)
+      state = state_pending;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void playTask()
+  {
+    if (state == state_pending)
+    {
+      newTask();
+      state = state_waiting0;
+    }
+
+    current_interval.play(m_context);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public boolean isActive(int key)
+  {
+    if(level == getNumLevels())
+      return true;
+    
+    if (state == state_pending)
+      return false;
+
+    int root = current_interval.tone0;
+    int diff = key - root;
+
+    if (key == root)
+      return true;
+    //trace("root:" , root.toString(), "diff:" , diff.toString());
+    if (two_intervals)
+      return (Math.abs(diff) == Math.abs(wrong_interval0) || Math.abs(diff) == Math.abs(wrong_interval1));
+
+    for (int i = 0; i < level + 2; ++i)
+      if (Constants.intervals[i] == Math.abs(diff))
+        return true;
+
+    return false;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void keyPressed(int key_num)
+  {
+    //if (SoundManager.playSoundAndBlock(key_num) == null)
+    //return;
+
+    SoundManager.playSound(m_context, key_num);
+
+
+    keys_down[key_num] = true;
+
+    if (state == state_waiting0 && isActive(key_num))
+    {
+      if(key_num != current_interval.tone0)
+        return;
+
+      ++num_tries;
+      current_answer.tone0 = key_num;
+      state = state_waiting1;
+      return;
+    }
+
+    if (state == state_waiting1 && isActive(key_num))
+    {
+      if(key_num == current_interval.tone0)
+        return;
+
+      ++num_tries;
+      state = state_answered;
+      current_answer.diff = key_num - current_answer.tone0;
+
+      boolean correct = TestingHelper.always_true ? true : (current_answer.equal(current_interval));
+
+      if (correct)
+        ++correct_in_row;
+      else
+      {
+        correct_in_row = 0;
+
+        if (level > 0 && !two_intervals)
+        {
+          two_intervals = true;
+          wrong_interval0 =  current_answer.diff;
+          wrong_interval1 = current_interval.diff;
+        }
+      }
+
+      if ((level != Constants.num_levels) && correct_in_row >= correctNeeded())
+      {
+        if (!two_intervals)
+        {
+          if (level < Constants.num_levels)
+            ++level;
+
+          two_intervals = false;
+          correct_in_row = 0;
+          state = state_level_complete;
+        }
+
+        correct_in_row = 0;
+        two_intervals = false;
+      }
+    }
+
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public int getCorrectInRow()
+  {
+    return correct_in_row;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public boolean exit()
+  {
+    return exited;
+
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+  public int correctNeeded()
+  {
+    if(TestingHelper.testing)
+      return 1;
+    
+    if (two_intervals)
+      return 10;
+
+    if (level < 4)
+      return 15;
+
+    if (level < 8)
+      return 25;
+
+    return 30;
+  }    
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+
+  private int getFontSize()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (int)((Constants.phiOrder(6))*(double)display.getHeight());
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void subscribeRoot(Canvas canvas)
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+    int root = current_interval.tone0;
+    int x = kbrd.getKeyX(root) - getKeyboardFocusX();
+    int y = kbrd.getKeysH();
+
+    if(kbrd.isBlack(root))
+      y -= kbrd.getKeySize(display.getHeight());
+
+
+    //TextHelper.drawText(x - 5, y - 23, 30, 20, Constants.toneName(root),15, Gravity.CENTER, canvas);
+
+    root_text.setTextSize(getFontSize());
+    root_text.setSize(kbrd.getKeySize(display.getHeight()), kbrd.getKeySize(display.getHeight()));
+    root_text.moveTo(x, y);
+    root_text.setText(Constants.toneName(root));
+    root_text.draw(canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void subscribeLevel(Canvas canvas)
+  {
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawPending(Canvas canvas)
+  {
+    drawSubText("Press play to hear interval.", m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawPrompt(Canvas canvas)
+  {
+    drawSubText(Constants.tone_names[current_interval.tone0 % Constants.num_tones_in_octave] + " - ?", m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+  public void draw(Canvas canvas)
+  {
+    canvas.drawColor(Color.BLACK);
+
+    if (playOrRepeat())
+      kbrd.drawPlay(canvas);
+    else
+      kbrd.drawRepeat(canvas);
+
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+    drawKeys(0, kbrd.getKeysH(), canvas);
+
+    progress.updateBtnEnabling();
+    progress.level = getLevel();
+
+    if (state == state_answered || state == state_level_complete)
+    {
+      if (state == state_level_complete)
+        if (level == getNumLevels())
+          drawGameOver(canvas);
+        else
+          drawLevelComplete(canvas);
+
+      if (state == state_answered)
+        drawAnswer(canvas);
+    }
+
+    if (state == state_waiting0 || state == state_waiting1)
+    {
+      drawPrompt(canvas);
+      subscribeRoot(canvas);
+    }
+
+    if (state == state_pending)
+    {
+      drawPending(canvas);
+    }
+
+    exitBtn.draw(canvas);
+
+    progress.drawProgress(getCorrectInRow(), correctNeeded(), canvas);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  private int getKeyboardFocusX()
+  {
+    int keyboard_x = 0;
+
+    if(current_interval.tone0 != -1)
+      if(current_interval.diff >= 0)
+        keyboard_x = kbrd.getKeyX(Math.min(current_interval.tone0, Constants.num_tones_in_octave*(Constants.num_octaves-1)));
+      else
+        keyboard_x = kbrd.getKeyX(Math.max(0, current_interval.tone0 - Constants.num_tones_in_octave));
+
+
+    return keyboard_x;
+
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  private void drawKeys(int x,int y,Canvas canvas)
+  {
+    int keyboard_x = getKeyboardFocusX();
+
+    for (int octave_ind = 0; octave_ind < Constants.num_octaves; ++octave_ind)
+    {
+      for (int tone_ind = 0; tone_ind < Constants.num_tones_in_octave; ++tone_ind)
+      {
+        int tone = tone_ind + octave_ind *Constants.num_tones_in_octave;
+        int tone_state = 0;
+        if (isActive(tone))
+          tone_state = key_state_active;
+        else
+          tone_state = key_state_disabled;
+
+        if (keys_down[tone])
+          if (isActive(tone))
+            tone_state = key_state_active_pressed;
+          else
+            tone_state = key_state_pressed;
+
+
+        kbrd.drawKey(keyboard_x, y, tone, canvas, tone_state);
+      }
+    }
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public boolean playOrRepeat()
+  {
+    return !(state == state_waiting0 || state == state_waiting1);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public void drawAnswer(Canvas canvas)
+  {
+
+    boolean correct = (current_answer.equal(current_interval));
+
+    String[] correct_strs = {"Correct.", "Right!", "Yes.", "Indeed.", "You are right."};
+    String[] wrong_strs = {"Wrong.", "Sorry.", "No.", "Oops!"};
+    //the sum sort of emulates randomness, but is stable between user inputs.
+    String correct_str = correct_strs[(num_tries + current_interval.tone0 + (current_answer.tone0+current_answer.diff))%correct_strs.length];
+    String wrong_str = wrong_strs[(num_tries + current_interval.tone0 + (current_answer.tone0+current_answer.diff))%wrong_strs.length];
+
+    String text = (correct ? correct_str + "\n" : wrong_str + "\n") ;
+
+    text += "It is ";
+    text += current_interval.toString();
+
+    if(!correct)
+    {
+      text += ",\nnot ";
+      text += current_answer.toString();
+    }
+
+    drawMessageBox(text, m_context, canvas);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawLevelComplete(Canvas canvas)
+  {
+    String text = ("Level "+ Integer.toString(level+1) + "\n"  + "New interval: ") ;
+
+    if(level == 0)
+      text += (Constants.interval_names[Constants.intervals[0]] + " / " + Constants.interval_names[Constants.intervals[1]]);
+    else
+      text += (Constants.interval_names[Constants.intervals[level + 1]]);
+
+    drawMessageBox(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawGameOver(Canvas canvas)
+  {
+    String text = "Congratulations, great job!\n Now you can practice further,\n or try your pitch with \n other instruments.";
+    drawMessageBox(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+}
+

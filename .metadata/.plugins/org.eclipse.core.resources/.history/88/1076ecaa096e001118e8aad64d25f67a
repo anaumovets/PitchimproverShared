@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ll1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ll11"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <Button
+        android:id="@+id/button_intervals"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Intervals recognition" />
+    <Button
+        android:id="@+id/button_progressions"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Progressions" />
+</LinearLayout>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ll12"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <Button
+        android:id="@+id/button_melody"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Melodic dictation" />
+    <Button
+        android:id="@+id/button_chords"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Chord types" />
+    
+</LinearLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ll13"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <Button
+        android:id="@+id/button_perfect"
+        android:layout_width="fill_parent"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Perfect pitch" />
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ll13"
+    android:layout_width="fill_parent"
+     android:layout_weight="0.5"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+    </LinearLayout>
+</LinearLayout>
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        ads:adSize= "IAB_LEADERBOARD"
+        ads:adUnitId="a14ed65f462f75a"
+        ads:keywords="piano,guitar,music,musical"
+        ads:loadAdOnCreate="true"
+        ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID" >
+    </com.google.ads.AdView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/ll14"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <TextView android:id="@+id/link" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:text="pitchimprover.com"/>
+
+</LinearLayout>
+    
+</LinearLayout>

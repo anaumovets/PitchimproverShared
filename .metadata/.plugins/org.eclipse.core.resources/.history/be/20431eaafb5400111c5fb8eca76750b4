@@ -1,0 +1,524 @@
+﻿package android.pitchimprover;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.WindowManager;
+
+
+public class ExcerciseMelody extends ExcerciseHelper 
+{
+  public int state_pending = 0;
+  public int state_waiting = 1;
+  public int state_answered = 3;
+  public int state_level_complete = 4;
+
+  public int sequence_cursor;
+
+  public int root;
+
+  public int num_tries;
+
+  public int state;
+  public int level;
+  public int length;
+
+  public boolean two_intervals;
+  public int correct_in_row;
+  public boolean mistaken;
+
+  public Sequence current_seq;
+  public Sequence current_answer;
+  public int wrong_tone;
+
+  public int key_state_disabled = 0;
+  public int key_state_active = 1;
+  public int key_state_pressed = 2;
+  public int key_state_active_pressed = 3;
+
+  public boolean[] keys_down;
+
+  private Progress progress;
+  private Keyboard kbrd;
+
+  private Context m_context;
+  private TextHelper root_text;
+
+  private TextHelper level_name_text;
+  
+  private KeySelector key_selector;
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// void ExcerciseMelody(Canvas canvas)
+  ExcerciseMelody(Context context)
+  {
+    m_context = context;
+
+    init(context);
+    
+    level_name_text = new TextHelper(0, 0, 100, 100, "", 18, context, Gravity.LEFT);
+
+    key_selector = new KeySelector(context, "Key ");
+    root_text = new TextHelper(5, 100, 30, 20, Constants.toneName(5),15.0f,context, Gravity.CENTER);
+    
+    correct_in_row = 0;
+    num_tries = 0;
+    root = 0;
+    length = 5;
+
+    keys_down = new boolean[Constants.num_tones_in_octave * Constants.num_octaves];
+    for (int ind = 0; ind < keys_down.length; ++ind)
+      keys_down[ind] = false;
+
+    progress = new Progress(getNumLevels(), context, this, false);
+    //progress.hideLevel();
+
+    kbrd = new Keyboard(context, false);
+
+    SequencePlayer.playing = false;
+    setLevel(0); 
+    resetState();
+    newTask();
+
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  private void updateBtnEnabling()
+  {
+    key_selector.enableSelection(state == state_pending || state == state_answered);
+
+    if (level == Constants.getNumMelodyLevels() || level == Constants.getNumMelodyLevels() - 1)
+      key_selector.enableSelection(false);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private int getButtonSize()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (int)(Constants.phiOrder(4)*(double)display.getHeight());
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private int getKeysH()
+  {
+    return kbrd.getKeysH() + getButtonSize();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void setLevel(int i_lvl)
+  {
+    level = i_lvl;
+    //resetState();
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public void newTask()
+  {
+    current_seq = new Sequence(length);
+    current_seq.Randomize(level, root);
+
+    current_answer = new Sequence(0);
+    mistaken = false;
+    //current_answer.add(current_seq.ith(0));
+  }    
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void resetState()
+  {
+    state = state_pending;
+    wrong_tone = -1;
+    updateBtnEnabling();
+    setLevel(progress.level);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void clickedAnywhere()   
+  {
+    if (state == state_answered || state == state_level_complete)
+      resetState();
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void playTask()
+  {
+    
+    if (state == state_pending)
+    {
+      newTask();
+      state = state_waiting;
+      updateBtnEnabling();
+    }
+
+    current_seq.play(m_context);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public boolean isActive(int key)
+  {
+    for (int i = 0; i < Constants.steps_by_levels[level].length; ++i)
+      if ((key + Constants.num_tones_in_octave - root) % Constants.num_tones_in_octave == Constants.steps_by_levels[level][i])
+        return true;
+
+    return false;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void keyPressed(int key)
+  {
+    SoundManager.playSound(m_context, key);
+
+    if (state == state_waiting && isActive(key))
+    {
+      ++num_tries;
+
+      if (key == current_seq.ith(current_answer.len()) || TestingHelper.always_true)
+      {
+        current_answer.add(key);
+        wrong_tone = -1;
+      }
+      else
+      {
+        correct_in_row = 0;
+        mistaken = true;
+        wrong_tone = key;
+      }
+
+      if (current_answer.len() == current_seq.len())
+      {
+        if(!mistaken)
+          ++correct_in_row;
+
+        state = state_answered;
+
+        if ((level != Constants.getNumMelodyLevels()) && correct_in_row >= correctNeeded())
+        {
+          if (level < Constants.getNumMelodyLevels())
+            ++level;
+
+          correct_in_row = 0;
+          state = state_level_complete;
+        }
+      }
+
+      updateBtnEnabling();
+
+      return;
+    }
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+  public int getCorrectInRow()
+  {
+    return correct_in_row;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+  public int correctNeeded()
+  {
+    if(TestingHelper.testing)
+      return 1;
+    
+    if (level < 5)
+      return 5;
+
+    if (level < 10)
+      return 7;
+
+    if (level < 15)
+      return 10;
+
+    if(level < 20)      
+      return 15;
+
+    return 10000;
+  }    
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  private int getKeyboardFocusX()
+  {
+    int keyboard_x = 0;
+
+    if(current_seq!= null)
+    {
+      keyboard_x = kbrd.getKeyX(current_seq.from);
+    }
+
+    return keyboard_x;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+
+  private int getFontSize()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (int)((Constants.phiOrder(6))*(double)display.getHeight());
+  }
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void subscribeRoot(Canvas canvas)
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+    int root = current_seq.sequence.get(0);
+    int x = kbrd.getKeyX(root) - getKeyboardFocusX();
+    int y = getKeysH();
+
+    if(kbrd.isBlack(root))
+      y -= kbrd.getKeySize(display.getHeight());
+
+    root_text.setTextSize(getFontSize());
+    root_text.setSize(kbrd.getKeySize(display.getHeight()), kbrd.getKeySize(display.getHeight()));
+    root_text.moveTo(x, y);
+    root_text.setText(Constants.toneName(root));
+    root_text.draw(canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void subscribeLevel(Canvas canvas)
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int h = display.getHeight();
+    level_name_text.setTextSize(progress.getFontSize(h));
+    level_name_text.moveTo(0, progress.getProgressBarH(h) + progress.getProgressBarY(h));
+    level_name_text.setSize(display.getWidth(), getButtonSize());
+    level_name_text.setText(Constants.level_names[level]);
+    level_name_text.draw(canvas);
+
+    //TextHelper.drawText(0, 0, Constants.scr_w, 20, Constants.level_names[level], canvas);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  private void drawMessageBox(int x,int y, int w, int h, Canvas canvas)
+  {	
+    Paint paint = new Paint();
+
+    paint.setColor(Color.BLACK);
+    paint.setAlpha(200);
+
+    canvas.drawRoundRect(new RectF(x, y, x + w, y + h), 5, 5, paint);
+
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public int getPromptHeight()
+  {
+    Display display = ((WindowManager)m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return getKeysH() + kbrd.getKeySize(display.getHeight());
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawPrompt(Canvas canvas)
+  {
+    String text = Constants.toneNameInKey(current_seq.ith(0), root, Constants.isMajor(level));
+
+    for (int i = 1; i < current_seq.len(); ++i)
+    {
+      if (i < current_answer.len())
+        text += " - " + Constants.toneNameInKey(current_answer.ith(i), root, Constants.isMajor(level));
+      else
+        text += " - ?";
+    }
+    
+    String answer_text = getAnswerText();
+    
+    if(answer_text != null)
+      text += "\n" + answer_text;
+    
+    drawSubText(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawPending(Canvas canvas)
+  {
+    String text = "Press play to hear melody";
+    drawSubText(text, m_context, canvas);
+  }  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawAnswered(Canvas canvas)
+  {
+    String text;
+
+    if(mistaken)
+      text = "There were some mistakes.\nPress play to hear melody";
+    else
+      text = "That was correct.\nPress play to hear next melody";
+
+    drawMessageBox(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void draw(Canvas canvas)
+  {
+    canvas.drawColor(Color.BLACK);
+
+    if (playOrRepeat())
+      kbrd.drawPlay(canvas);
+    else
+      kbrd.drawRepeat(canvas);
+
+    drawKeys(0, getKeysH(), canvas);
+
+    if (state == state_answered || state == state_level_complete)
+    {
+      if (state == state_level_complete)
+        if (level == getNumLevels())
+          drawGameOver(canvas);
+        else
+          drawLevelComplete(canvas);
+
+      if (state == state_answered)
+        drawAnswered(canvas);
+    }
+
+    if (state == state_waiting)
+    {
+      drawPrompt(canvas);
+      subscribeRoot(canvas);
+      drawAnswer(canvas);
+    }
+
+    if (state == state_pending)
+    {
+      drawPending(canvas);
+    }
+
+    subscribeLevel(canvas);
+
+
+
+    key_selector.draw(canvas);
+    progress.drawProgress(getCorrectInRow(), correctNeeded(), canvas);
+    drawHelper(canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  private void drawKeys(int x,int y,Canvas canvas)
+  {
+    int keyboard_x = getKeyboardFocusX();
+
+    for (int octave_ind = 0; octave_ind < Constants.num_octaves; ++octave_ind)
+    {
+      for (int tone_ind = 0; tone_ind < Constants.num_tones_in_octave; ++tone_ind)
+      {
+        int tone = tone_ind + octave_ind *Constants.num_tones_in_octave;
+        int tone_state = 0;
+        if (isActive(tone))
+          tone_state = key_state_active;
+        else
+          tone_state = key_state_disabled;
+
+        if (keys_down[tone])
+          if (isActive(tone))
+            tone_state = key_state_active_pressed;
+          else
+            tone_state = key_state_pressed;
+
+
+        kbrd.drawKey(keyboard_x, y, tone, canvas, tone_state);
+      }
+    }
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public int getNumLevels()
+  {
+    return Constants.getNumMelodyLevels();
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public boolean playOrRepeat()
+  {
+    return (state != state_waiting);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
+  public void mouseMove(int x,int y)
+  {
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                
+  public void mouseUp(int x,int y)
+  {
+    for (int ind = 0; ind < keys_down.length; ++ind)
+      keys_down[ind] = false;
+  }  
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public void mouseDown(int x,int y)
+  {
+    //if clicked anywhere, the result window must disappear
+    clickedAnywhere();
+
+    key_selector.mouseDown(x, y);
+    root = key_selector.getRoot();
+
+    mouseDownHelper(x, y);
+
+    if (progress.checkLevelChange(x, y))
+      return;
+
+    if (kbrd.playHitTest(x, y))
+    {
+      playTask();
+      return;
+    }
+
+    updateBtnEnabling();
+
+    int kbdx = getKeyboardFocusX();
+    int key_num = kbrd.keyHitTest(kbdx, x, y - getButtonSize());
+
+    if (key_num == -1)
+      return;
+
+    keys_down[key_num] = true;
+    keyPressed(key_num);
+  } 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  private String getAnswerText()
+  {
+    if (current_answer.len() == 0 && wrong_tone == -1)
+      return null;
+
+    boolean correct = (wrong_tone == -1);
+
+    String[] correct_strs = {"Correct.", "Right!", "Yes.", "Indeed.", "You are right."};
+    String[] wrong_strs = {"Wrong.", "Sorry.", "No.", "Oops!"};
+
+    //the sum sort of emulates randomness, but is stable between user inputs.
+    String correct_str = correct_strs[(num_tries + current_seq.root())%correct_strs.length];
+    String wrong_str = wrong_strs[(num_tries + current_seq.root())%wrong_strs.length];
+
+    String text = correct ? correct_str : wrong_str;
+    
+    if (correct)
+    {
+      text += " It is ";
+      text += Constants.toneNameInKey(current_seq.ith(current_answer.len()-1), root, Constants.isMajor(level));
+    }
+
+    if(!correct)
+    {
+      text += " It is not ";
+      text += Constants.toneNameInKey(wrong_tone, root, Constants.isMajor(level));
+    }
+    
+    return text;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public void drawAnswer(Canvas canvas)
+  {
+
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public int getLevel()
+  {
+    return level;
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawLevelComplete(Canvas canvas)
+  {
+    String text;
+    text = "Level ";
+    text += Integer.toString(level+1);
+    text += "\nPress play to hear melody.";
+
+    drawMessageBox(text, m_context, canvas);
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  public void drawGameOver(Canvas canvas)
+  {
+    String text = "Congratulations, great job!\n Now you can practice further,\n or try your pitch with \n other instruments.";
+    drawMessageBox(text, m_context, canvas);
+  }
+}
+
+

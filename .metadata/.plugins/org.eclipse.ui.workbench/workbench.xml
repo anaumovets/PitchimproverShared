@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="11" version="2.0">
+<workbenchAdvisor/>
+<window height="612" maximized="true" width="812" x="168" y="150">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout>
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="154" y="22"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="adt.actionSet.avdManager" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="adt.actionSet.wizards" itemType="typeToolBarContribution" x="85" y="22"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="124" y="22"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="74" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="74" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="109" y="22"/>
+<coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="185" y="22"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.android.ide.eclipse.editors.layout.LayoutEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.PropertiesFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1319712646359" focus="true" label="Workspace - Java">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
+<part id="19"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Animated.java" partName="Animated.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/Animated.java" title="Animated.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Animated.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Animated.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="267" selectionTopPixel="29"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CellMap.java" partName="CellMap.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/CellMap.java" title="CellMap.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/CellMap.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/CellMap.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="106" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExcerciseChords.java" partName="ExcerciseChords.java" path="E:/_Dev/pitchimproverandroid/PitchImproverLite/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChords.java" title="ExcerciseChords.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChords.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChords.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="42" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExcerciseChordTypes.java" partName="ExcerciseChordTypes.java" path="E:/_Dev/pitchimproverandroid/PitchImproverLite/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChordTypes.java" title="ExcerciseChordTypes.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChordTypes.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChordTypes.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1257" selectionTopPixel="54"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExcerciseHelper.java" partName="ExcerciseHelper.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseHelper.java" title="ExcerciseHelper.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseHelper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseHelper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="582" selectionTopPixel="569"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExcerciseIntervals.java" partName="ExcerciseIntervals.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseIntervals.java" title="ExcerciseIntervals.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseIntervals.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseIntervals.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15054" selectionTopPixel="7445"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ExcercisePerfect.java" partName="ExcercisePerfect.java" path="E:/_Dev/pitchimproverandroid/PitchImproverLite/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcercisePerfect.java" title="ExcercisePerfect.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/ExcercisePerfect.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcercisePerfect.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="42" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IExcercise.java" partName="IExcercise.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/IExcercise.java" title="IExcercise.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/IExcercise.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/IExcercise.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="42" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Keyboard.java" partName="Keyboard.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/Keyboard.java" title="Keyboard.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Keyboard.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Keyboard.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5101" selectionTopPixel="2531"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AnimationManager.java" partName="AnimationManager.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java" title="AnimationManager.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="494" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Pitchimprover.java" partName="Pitchimprover.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java" title="Pitchimprover.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="21" selectionOffset="144" selectionTopPixel="0"/>
+</editor>
+<editor id="com.android.ide.eclipse.editors.layout.LayoutEditor" name="main.xml" partName="main.xml" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/res/layout/main.xml" title="main.xml" tooltip="Pitchimprover/res/layout/main.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/res/layout/main.xml"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestingHelper.java" partName="TestingHelper.java" path="E:/_Dev/pitchimproverandroid/PitchImproverLite/Pitchimprover/src/com/pitchimprover/pitchimprover/TestingHelper.java" title="TestingHelper.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/TestingHelper.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/TestingHelper.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="172" selectionTopPixel="0"/>
+</editor>
+<editor id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="Pitchimprover Manifest" path="E:/_Dev/pitchimproverandroid/PitchImproverLite/Pitchimprover/AndroidManifest.xml" title="Pitchimprover Manifest" tooltip="Pitchimprover/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/AndroidManifest.xml"/>
+</editor>
+<editor id="com.android.ide.eclipse.editors.resources.ResourcesEditor" name="strings.xml" partName="strings.xml" path="E:/_Dev/pitchimproverandroid/PitchImproverLite/Pitchimprover/res/values/strings.xml" title="strings.xml" tooltip="Pitchimprover/res/values/strings.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/res/values/strings.xml"/>
+</editor>
+<editor id="com.android.ide.eclipse.editors.layout.LayoutEditor" name="menu.xml" partName="menu.xml" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/res/layout/menu.xml" title="menu.xml" tooltip="Pitchimprover/res/layout/menu.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/res/layout/menu.xml"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Constants.java" partName="Constants.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/Constants.java" title="Constants.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Constants.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Constants.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="181" selectionTopPixel="2927"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Interval.java" partName="Interval.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/Interval.java" title="Interval.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Interval.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Interval.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2619" selectionTopPixel="1253"/>
+</editor>
+<editor id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="mopub-android-sdk Manifest" path="E:/mopub/mopub-client/Android/mopub-android-sdk/AndroidManifest.xml" title="mopub-android-sdk Manifest" tooltip="mopub-android-sdk/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mopub-android-sdk/AndroidManifest.xml"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Progress.java" partName="Progress.java" path="E:/_Dev/pitchimproverandroid/PitchimproverShared/Pitchimprover/src/com/pitchimprover/pitchimprover/Progress.java" title="Progress.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Progress.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Progress.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4815" selectionTopPixel="2819"/>
+</editor>
+</editors>
+<views>
+<view id="com.android.ide.eclipse.ddms.views.LogCatView" partName="LogCat">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.TypeHierarchy" partName="Type Hierarchy">
+<viewState hidefields="false" hidelocaltypes="false" hidenonpublic="false" hidestatic="false" input="=Pitchimprover/src&lt;android.pitchimprover{Keyboard.java[Keyboard" link_editors="0" mv_vertical_scroll="0" orientation="3" qualified_names="0" ratio="92" selection="=Pitchimprover/src&lt;android.pitchimprover{Keyboard.java[Keyboard" showinherited="false" sortbydefiningtype="false" vertical_scroll="0" view="2" workingSetName="Aggregate for window 1319712646359"/>
+</view>
+<view id="org.eclipse.search.ui.views.SearchView" partName="Search">
+<viewState isPinned="false">
+<view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<columnWidths org.eclipse.ui.ide.locationField="75" org.eclipse.ui.ide.markerType="75" org.eclipse.ui.ide.pathField="100" org.eclipse.ui.ide.resourceField="75" org.eclipse.ui.ide.severityAndDescriptionField="597"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
+<viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="Aggregate for window 1319712646359">
+<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonSharedProjectsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaElementFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.ContainedLibraryFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.CuAndClassFileFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaProjectsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyInnerPackageFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.PackageDeclarationFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.EmptyPackageFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.ImportDeclarationFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.FieldsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.internal.ui.PackageExplorer.HideInnerClassFilesFilter" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.NonPublicFilter" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*" isEnabled="true"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter" isEnabled="true"/>
+<child filterId="org.eclipse.pde.ui.BinaryProjectFilter1" isEnabled="false"/>
+<child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
+</xmlDefinedFilters>
+</customFilters>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc">
+<viewState/>
+</view>
+</views>
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="adt.actionSet.wizards"/>
+<alwaysOnActionSet id="adt.actionSet.refactorings"/>
+<alwaysOnActionSet id="adt.actionSet.avdManager"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaElementCreationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.junit.JUnitActionSet"/>
+<show_view_action id="org.eclipse.jdt.ui.PackageExplorer"/>
+<show_view_action id="org.eclipse.jdt.ui.TypeHierarchy"/>
+<show_view_action id="org.eclipse.jdt.ui.SourceView"/>
+<show_view_action id="org.eclipse.jdt.ui.JavadocView"/>
+<show_view_action id="org.eclipse.search.ui.views.SearchView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.texteditor.TemplatesView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewPackageCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewInterfaceCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewEnumCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewAnnotationCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewSourceFolderCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewSnippetFileCreationWizard"/>
+<new_wizard_action id="org.eclipse.jdt.ui.wizards.NewJavaWorkingSetWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<new_wizard_action id="com.android.ide.eclipse.adt.project.NewProjectWizard"/>
+<new_wizard_action id="com.android.ide.eclipse.editors.wizards.NewXmlFileWizard"/>
+<new_wizard_action id="org.eclipse.jdt.junit.wizards.NewTestCaseCreationWizard"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
+<perspective_action id="com.android.ide.eclipse.ddms.Perspective"/>
+<perspective_action id="com.android.ide.eclipse.hierarchyviewer.PixelPerfectPespective"/>
+<perspective_action id="com.android.ide.eclipse.hierarchyviewer.TreeViewPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<fastViewBars>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1912839" orientation="512" selectedTabId="org.eclipse.jdt.ui.TypeHierarchy" style="0">
+<fastViews>
+<view id="org.eclipse.jdt.ui.TypeHierarchy" ratio="0.164155"/>
+<view id="com.android.ide.eclipse.ddms.views.LogCatView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.search.ui.views.SearchView" style="0">
+<fastViews>
+<view id="org.eclipse.search.ui.views.SearchView" ratio="0.29926237"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@7b2d93" orientation="512" selectedTabId="org.eclipse.jdt.ui.PackageExplorer" style="0">
+<fastViews>
+<view id="org.eclipse.ui.views.ProblemView" ratio="0.70290637"/>
+<view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
+<view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
+<view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
+<view id="org.eclipse.jdt.ui.PackageExplorer" ratio="0.2992465"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.2992465"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@7b2d93">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.JavadocView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.SourceView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@150a0" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.ui.internal.ViewStack@7b2d93">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.19961612" ratioLeft="208" ratioRight="834" relationship="2" relative="org.eclipse.ui.internal.ViewStack@7b2d93"/>
+<info folder="true" part="bottom" ratio="0.5718816" ratioLeft="541" ratioRight="405" relationship="4" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="right" ratio="0.75" ratioLeft="567" ratioRight="189" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1912839" ratio="0.602657" ratioLeft="499" ratioRight="329" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="left" ratio="0.3911205" ratioLeft="370" ratioRight="576" relationship="4" relative="org.eclipse.ui.internal.ViewStack@7b2d93">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.junit.ResultView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/CellMap.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" path="/Pitchimprover/res/layout/main.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/TestingHelper.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChordTypes.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/Pitchimprover/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.resources.ResourcesEditor" path="/Pitchimprover/res/values/strings.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/Pitchimprover/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" path="/Pitchimprover/res/layout/main.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseChordTypes.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/CellMap.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/mopub-android-sdk/libs/README.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/MainMenu.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ChordSequence.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseIntervals.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseMelody.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/CellMap.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" path="/Pitchimprover/res/layout/menu.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" path="/Pitchimprover/res/layout/main.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Animated.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Constants.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ExcerciseHelper.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/IExcercise.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Interval.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Keyboard.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/MainMenu.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/mopub-android-sdk/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/MProgress.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Progress.java"/>
+</editors>
+<item historyLabel="AnimationManager.java" index="0">
+<position info="not_deleted" x="494" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="1">
+<position info="not_deleted" x="8" y="33"/>
+</item>
+<item historyLabel="Pitchimprover.java" index="2">
+<position info="not_deleted" x="1098" y="0"/>
+</item>
+<item historyLabel="main.xml" index="3"/>
+<item historyLabel="CellMap.java" index="1">
+<position info="not_deleted" x="8" y="33"/>
+</item>
+<item historyLabel="TestingHelper.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ExcerciseChordTypes.java" index="5">
+<position info="not_deleted" x="494" y="0"/>
+</item>
+<item historyLabel="Pitchimprover Manifest" index="6"/>
+<item historyLabel="strings.xml" index="7"/>
+<item historyLabel="Pitchimprover Manifest" index="8"/>
+<item historyLabel="main.xml" index="9"/>
+<item historyLabel="ExcerciseChordTypes.java" index="10">
+<position info="not_deleted" x="494" y="0"/>
+</item>
+<item historyLabel="Pitchimprover.java" index="11">
+<position info="not_deleted" x="1098" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="12">
+<position info="not_deleted" x="1078" y="0"/>
+</item>
+<item historyLabel="README.txt" index="13">
+<position info="not_deleted" x="140" y="6"/>
+</item>
+<item historyLabel="CellMap.java" index="12">
+<position info="not_deleted" x="1078" y="0"/>
+</item>
+<item historyLabel="MainMenu.java" index="14">
+<position/>
+</item>
+<item historyLabel="main.xml" index="9"/>
+<item historyLabel="MainMenu.java" index="14">
+<position/>
+</item>
+<item historyLabel="main.xml" index="9"/>
+<item historyLabel="MainMenu.java" index="14">
+<position info="not_deleted" x="1423" y="0"/>
+</item>
+<item historyLabel="main.xml" index="9"/>
+<item historyLabel="Pitchimprover.java" index="11">
+<position info="not_deleted" x="799" y="0"/>
+</item>
+<item historyLabel="ChordSequence.java" index="15">
+<position info="not_deleted" x="169" y="0"/>
+</item>
+<item historyLabel="Pitchimprover.java" index="11">
+<position info="not_deleted" x="799" y="0"/>
+</item>
+<item historyLabel="ExcerciseIntervals.java" index="16">
+<position info="not_deleted" x="42" y="0"/>
+</item>
+<item historyLabel="ExcerciseMelody.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ExcerciseIntervals.java" index="16">
+<position info="not_deleted" x="42" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="18">
+<position info="not_deleted" x="1027" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="18">
+<position info="not_deleted" x="2477" y="0"/>
+</item>
+<item historyLabel="menu.xml" index="19"/>
+<item historyLabel="main.xml" index="20"/>
+<item historyLabel="Animated.java" index="21">
+<position info="not_deleted" x="267" y="0"/>
+</item>
+<item historyLabel="AnimationManager.java" index="22">
+<position info="not_deleted" x="494" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="18">
+<position info="not_deleted" x="2375" y="0"/>
+</item>
+<item historyLabel="Constants.java" index="23">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ExcerciseHelper.java" index="24">
+<position info="not_deleted" x="582" y="0"/>
+</item>
+<item historyLabel="ExcerciseIntervals.java" index="16">
+<position info="not_deleted" x="377" y="0"/>
+</item>
+<item historyLabel="IExcercise.java" index="25">
+<position info="not_deleted" x="42" y="0"/>
+</item>
+<item historyLabel="Interval.java" index="26">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Keyboard.java" index="27">
+<position info="not_deleted" x="5503" y="0"/>
+</item>
+<item historyLabel="MainMenu.java" index="28">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Keyboard.java" index="27">
+<position info="not_deleted" x="5101" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="18">
+<position info="not_deleted" x="671" y="0"/>
+</item>
+<item historyLabel="mopub-android-sdk Manifest" index="29"/>
+<item historyLabel="Pitchimprover.java" index="11">
+<position info="not_deleted" x="144" y="21"/>
+</item>
+<item historyLabel="MProgress.java" index="30">
+<position info="not_deleted" x="2182" y="113"/>
+</item>
+<item historyLabel="Progress.java" index="31">
+<position info="not_deleted" x="733" y="0"/>
+</item>
+<item historyLabel="CellMap.java" index="18">
+<position info="not_deleted" x="106" y="0"/>
+</item>
+<item active="true" historyLabel="Progress.java" index="31">
+<position/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@7b2d93"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@1912839"/>
+</trimArea>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="bottom"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Progress.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Progress.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Progress.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MProgress.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/MProgress.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/MProgress.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="mopub-android-sdk/AndroidManifest.xml">
+<persistable path="/mopub-android-sdk/AndroidManifest.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainMenu.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/MainMenu.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/MainMenu.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Interval.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Interval.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Interval.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Constants.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Constants.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Constants.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" name="menu.xml" tooltip="Pitchimprover/res/layout/menu.xml">
+<persistable path="/Pitchimprover/res/layout/menu.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChordSequence.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/ChordSequence.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/ChordSequence.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="README.txt" tooltip="mopub-android-sdk/libs/README.txt">
+<persistable path="/mopub-android-sdk/libs/README.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.resources.ResourcesEditor" name="strings.xml" tooltip="Pitchimprover/res/values/strings.xml">
+<persistable path="/Pitchimprover/res/values/strings.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="Pitchimprover/AndroidManifest.xml">
+<persistable path="/Pitchimprover/AndroidManifest.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestingHelper.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/TestingHelper.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/TestingHelper.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" name="main.xml" tooltip="Pitchimprover/res/layout/main.xml">
+<persistable path="/Pitchimprover/res/layout/main.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Pitchimprover.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/Pitchimprover.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AnimationManager.java" tooltip="Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java">
+<persistable path="/Pitchimprover/src/com/pitchimprover/pitchimprover/AnimationManager.java"/>
+</file>
+</mruList>
+</workbench>

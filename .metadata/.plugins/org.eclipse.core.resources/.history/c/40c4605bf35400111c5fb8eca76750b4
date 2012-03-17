@@ -1,0 +1,95 @@
+package android.pitchimprover;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.WindowManager;
+
+public abstract class ExcerciseHelper implements IExcercise
+{
+  private TextHelper msg_text;
+  private TextHelper sub_text;
+
+  private MButton exitBtn;
+  private boolean exited;
+
+  public void init(Context context)
+  {
+    msg_text = new TextHelper(0, 0, 100, 100, "",  18, context, Gravity.CENTER);
+    sub_text = new TextHelper(0, 0, 100, 100, "",  18, context, Gravity.CENTER);
+
+    Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int full_w = display.getWidth();
+    int full_h = display.getHeight();
+    int toolbar_delta = 30;
+    exitBtn = new MButton(full_w - full_w/5,   full_h - full_h/6 - toolbar_delta, full_w/5, full_h/6, "Exit", context);
+    exited = false;
+  }
+  
+  public int getFontSize(Context context)
+  {
+    Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    return (int)((Constants.phiOrder(6))*(double)display.getHeight());
+  }
+
+  public void drawSubText(String text, Context context, Canvas canvas)
+  {
+    Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+    int toolbar_delta = 30;
+    sub_text.setTextSize(getFontSize(context));
+    sub_text.moveTo(0, (int) (display.getHeight() - getFontSize(context)*4 - toolbar_delta));
+    sub_text.setSize(display.getWidth(), getFontSize(context)*4);
+    sub_text.setText(text);
+    sub_text.draw(canvas);
+  }
+
+  public void mouseDownHelper(int x,int y)
+  {
+    if(exitBtn.hitTestPoint(x, y))
+    {
+      exited = true;
+      return;
+    }
+  }
+  
+  public void drawMessageBox(String text, Context context, Canvas canvas)
+  {
+    Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+  
+    int xbox = display.getWidth()/5;
+    int ybox = display.getHeight()/5;
+    int wbox = (display.getWidth()*3)/5;
+    int hbox = (display.getHeight()*3)/5;
+  
+    drawMessageBoxBkg(xbox, ybox, wbox, hbox, canvas);
+    
+    msg_text.setTextSize(getFontSize(context));
+    msg_text.moveTo(xbox+5, ybox+5);
+    msg_text.setSize(wbox, hbox);
+    msg_text.setText(text);
+    msg_text.draw(canvas);
+  }
+
+  public void drawHelper(Canvas canvas)
+  {
+    exitBtn.draw(canvas);
+  }
+  
+  private void drawMessageBoxBkg(int x,int y, int w, int h, Canvas canvas)
+  {
+    Paint paint = new Paint();
+    paint.setColor(Color.BLACK);
+    paint.setAlpha(200);
+    canvas.drawRoundRect(new RectF(x, y, x + w, y + h), 5, 5, paint);
+  }
+
+  public boolean exit()
+  {
+    return exited;
+  }
+}

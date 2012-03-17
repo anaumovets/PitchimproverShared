@@ -1,0 +1,90 @@
+package android.pitchimprover;
+import com.google.ads.*;
+
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.Gallery;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
+public class Pitchimprover extends Activity {
+  private static final String LOG_TAG = Pitchimprover.class.getSimpleName();
+  private CellMap _map;
+
+  private AdView adView;
+
+  private LinearLayout llayout;
+  private LinearLayout.LayoutParams params;
+  
+  private Button btn_intervals;
+  private Button btn_perfect;
+  private Button btn_melody;
+  private Button btn_progressions;
+  private Button btn_chord_types;
+  
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+/*
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    mAdView = (MoPubView) findViewById(R.id.adview);
+    
+    
+    mAdView.setAdUnitId("agltb3B1Yi1pbmNyDQsSBFNpdGUY08W1Egw"); // Enter your Ad Unit ID from www.mopub.com
+    mAdView.loadAd();
+*/
+
+    RelativeLayout panel = new RelativeLayout(this);
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+
+    btn_intervals = (Button)findViewById(R.id.button_intervals);
+    _map = new CellMap(this, panel, this);
+    btn_intervals.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {_map = new CellMap(this, panel, this); setContentView(_map);}
+    });
+
+    //setContentView(llayout);
+    // Look up the AdView as a resource and load a request.
+    //AdView adView = (AdView)this.findViewById(R.id.adView);
+ 
+    //adView = new AdView(this, AdSize.IAB_BANNER, "agltb3B1Yi1pbmNyDQsSBFNpdGUY08W1Egw");//(null, null, null);
+    //adView.loadAd(new AdRequest());
+
+    //llayout.addView(adView, params);
+/*
+    
+    
+    super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+    
+    RelativeLayout panel = new RelativeLayout(this);
+
+    panel.setLayoutParams(new RelativeLayout.LayoutParams(0, 0));
+
+
+    super.onCreate(savedInstanceState);
+
+    _map = new CellMap(this, panel, this);
+    setContentView(_map);
+*/
+  }
+
+
+}

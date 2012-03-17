@@ -1,0 +1,122 @@
+package android.pitchimprover;
+
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.WindowManager;
+import android.view.View.MeasureSpec;
+import android.widget.LinearLayout;
+
+public class MainMenu {
+  public static int choice_none         = 0;
+  public static int choice_intervals    = 1;
+  public static int choice_perfect      = 2;
+  public static int choice_melody       = 3;
+  public static int choice_progressions = 4;
+  public static int choice_chordtypes   = 5;
+
+  private MButton intervalsBtn;
+  private MButton perfectBtn;
+  private MButton melodyBtn;
+  private MButton progressionsBtn;
+  private MButton chordTypesBtn;
+  private TextHelper sub_text;
+  private AdView adView;
+
+  private LinearLayout.LayoutParams l_layoutParams;
+  private LinearLayout l_layout;
+
+  
+  public MainMenu(Context i_context, Activity i_activity)
+  {
+    Display display = ((WindowManager)i_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int full_w = display.getWidth();
+    int full_h = display.getHeight();
+
+    int w = full_w/2;
+    int h = full_h/6;
+    
+    
+    l_layout = new LinearLayout(i_context);
+    l_layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    //We set the layout parameters
+
+    //SET THE MARGIN HERE
+    l_layoutParams.setMargins(0, 0, 20, 20);
+    l_layoutParams.width = full_w;
+    l_layoutParams.height = full_h;
+    //Add it to our linear layout
+
+    adView = new AdView(i_activity, AdSize.IAB_BANNER, "a14ed65f462f75a");//(null, null, null);
+    adView.loadAd(new AdRequest());
+
+    l_layout.addView(adView, l_layoutParams);
+    adView.setLayoutParams(l_layoutParams);
+    
+    
+/*
+    intervalsBtn =    new MButton(full_w/4,   0, w, h, "Intervals recognition", i_context);
+    perfectBtn =      new MButton(full_w/4,   h, w, h, "Perfect pitch", i_context);
+    melodyBtn =       new MButton(full_w/4, 2*h, w, h, "Melodic dictation", i_context);
+    progressionsBtn = new MButton(full_w/4, 3*h, w, h, "Progressions", i_context);
+    chordTypesBtn =   new MButton(full_w/4, 4*h, w, h, "Chord types", i_context);
+
+    sub_text = new TextHelper(0, 5*h, full_w, h/2, "pitchimprover.com",  18, i_context, Gravity.CENTER);
+
+    intervalsBtn.setEnabled(true);
+    perfectBtn.setEnabled(true);
+    melodyBtn.setEnabled(true);
+    progressionsBtn.setEnabled(true);
+    chordTypesBtn.setEnabled(true);*/
+  }
+
+
+  public int checkSelection(int x,int y)
+  {
+    if (intervalsBtn.isEnabled() && intervalsBtn.hitTestPoint(x, y))
+      return choice_intervals;
+
+    if (perfectBtn.isEnabled() && perfectBtn.hitTestPoint(x, y))
+      return choice_perfect;
+
+    if (melodyBtn.isEnabled() && melodyBtn.hitTestPoint(x, y))
+      return choice_melody;
+
+    if (progressionsBtn.isEnabled() && progressionsBtn.hitTestPoint(x, y))
+      return choice_progressions;
+
+    if (chordTypesBtn.isEnabled() && chordTypesBtn.hitTestPoint(x, y))
+      return choice_chordtypes;
+
+    return choice_none;
+  }
+
+  public void draw(Canvas canvas)
+  {
+    canvas.drawColor(Color.BLACK);
+    /*
+    intervalsBtn.draw(canvas);
+    perfectBtn.draw(canvas);
+    melodyBtn.draw(canvas);
+    progressionsBtn.draw(canvas);
+    chordTypesBtn.draw(canvas);
+    sub_text.draw(canvas);*/
+    
+    
+    //Measure and layout the linear layout before drawing it
+    l_layout.measure(MeasureSpec.getSize(l_layout.getMeasuredWidth()), MeasureSpec.getSize(l_layout.getMeasuredHeight()));
+    l_layout.layout(0, 0, MeasureSpec.getSize(adView.getMeasuredWidth()), MeasureSpec.getSize(adView.getMeasuredHeight()));
+    //Finally draw the linear layout on the canvas
+    l_layout.draw(canvas);
+    adView.draw(canvas);
+  }
+
+}
