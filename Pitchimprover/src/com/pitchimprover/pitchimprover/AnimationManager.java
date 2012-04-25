@@ -3,6 +3,9 @@ package com.pitchimprover.pitchimprover;
 import android.graphics.BitmapFactory;
 import android.content.Context;
 
+/*
+ * AnimationManager is a factory class for bitmaps and animations
+ */
 class AnimationManager
 {
   public static Animated CreateKeysActiveAnim(Context context)

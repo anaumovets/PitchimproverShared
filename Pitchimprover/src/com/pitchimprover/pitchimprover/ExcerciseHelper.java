@@ -13,6 +13,9 @@ import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
+/*
+ * ExcerciseHelper contains util functions and is inherited by all excercise classes
+ */
 public abstract class ExcerciseHelper implements IExcercise
 {
   private TextHelper msg_text;

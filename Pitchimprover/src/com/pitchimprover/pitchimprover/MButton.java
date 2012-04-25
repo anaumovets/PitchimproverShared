@@ -9,7 +9,9 @@ import android.widget.LinearLayout;
 
 /**
  * ...
- * @author gary poison
+ * @author garypoison
+ * wrapper class for buttons
+ * 
  */
 public class MButton 
 {

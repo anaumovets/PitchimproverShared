@@ -10,7 +10,8 @@ import android.view.Gravity;
 import android.view.WindowManager;
 
 /**
- * ...
+ * display progress on each level
+ * probably should be replaced with a progress bar
  * @author gary poison
  */
 public class Progress 
